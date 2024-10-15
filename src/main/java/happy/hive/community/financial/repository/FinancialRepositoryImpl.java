@@ -6,9 +6,13 @@ import com.google.gson.JsonParser;
 import happy.hive.community.financial.exceptions.BalanceMappingException;
 import happy.hive.community.financial.exceptions.NoSuchFileException;
 import happy.hive.community.financial.model.Balance;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -18,20 +22,20 @@ import java.util.List;
 public class FinancialRepositoryImpl implements FinancialRepository {
     private final Gson gson = new Gson();
 
-    public String redFile() throws NoSuchFileException, IOException {
-        final String FILE_PATH = "src/main/java/happy/hive/community/financial/balances.json";
-        try {
-            return Files.readString(Path.of(FILE_PATH));
+    public String readFile() throws IOException, NoSuchFileException {
+        Resource resource = new ClassPathResource("balances.json");
+        try (InputStream inputStream = resource.getInputStream()) {
+            return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         } catch (java.nio.file.NoSuchFileException e) {
             throw new NoSuchFileException("The specified file could not be found. Please verify the file path and try again.");
         } catch (IOException e) {
-            throw new IOException(e.getMessage());
+            throw new IOException("An error occurred while reading the file: " + e.getMessage(), e);
         }
     }
 
     @Override
     public List<Balance> findBalances() throws NoSuchFileException, IOException, BalanceMappingException {
-        String balancesJson = this.redFile();
+        String balancesJson = this.readFile();
         JsonObject jsonObject = JsonParser.parseString(balancesJson).getAsJsonObject();
         Balance[] balance = this.gson.fromJson(jsonObject.getAsJsonArray("accounts"), Balance[].class);
         if (balance == null) {
