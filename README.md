@@ -1,6 +1,7 @@
-# financial-dashboard-backend
+# Financial-dashboard-backend
 
-These are the files used to develop the financial dashboard. The aim of this dashboard is to provide a simple display of account balances.
+This project is a REST API designed for creating a financial dashboard. It allows users to retrieve account balances and manage financial data effectively. The aim of this dashboard is to provide a simple display of account balances.
+
 The technology stack used include
 [Java 17](https://community.chocolatey.org/packages/openjdk/17.0.2), and Lombok.
 
