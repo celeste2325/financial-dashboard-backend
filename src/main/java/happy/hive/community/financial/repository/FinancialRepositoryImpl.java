@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class BalanceRepositoryImpl implements BalanceRepository {
+public class FinancialRepositoryImpl implements FinancialRepository {
     private final Gson gson = new Gson();
 
     public String redFile() throws NoSuchFileException, IOException {

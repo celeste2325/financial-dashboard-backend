@@ -3,7 +3,7 @@ package happy.hive.community.financial.controller;
 import happy.hive.community.financial.exceptions.BalanceMappingException;
 import happy.hive.community.financial.exceptions.NoSuchFileException;
 import happy.hive.community.financial.model.Balance;
-import happy.hive.community.financial.service.BalanceService;
+import happy.hive.community.financial.service.FinancialService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,14 +17,14 @@ import java.util.List;
 @RestController
 @RequestMapping("balance")
 @CrossOrigin(origins = "*")
-public class BalanceController {
-    final private BalanceService balanceService;
+public class FinancialController {
+    final private FinancialService balanceService;
 
-    public BalanceController(BalanceService balanceService) {
+    public FinancialController(FinancialService balanceService) {
         this.balanceService = balanceService;
     }
 
-    @GetMapping()
+    @GetMapping("/balances")
     public ResponseEntity<List<Balance>> getBalances() throws NoSuchFileException, IOException, BalanceMappingException {
         return new ResponseEntity<>(this.balanceService.findBalances(), HttpStatus.OK);
     }

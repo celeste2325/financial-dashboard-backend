@@ -7,6 +7,6 @@ import happy.hive.community.financial.model.Balance;
 import java.io.IOException;
 import java.util.List;
 
-public interface BalanceService {
+public interface FinancialService {
     List<Balance> findBalances() throws NoSuchFileException, IOException, BalanceMappingException;
 }
