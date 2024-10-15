@@ -6,9 +6,10 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Balance {
-    private String accountId;
     private String accountName;
+    private String accountID;
     private double balance;
     private String currency;
+    private String type;
 }
 
