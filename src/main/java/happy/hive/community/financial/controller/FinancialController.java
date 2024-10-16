@@ -24,7 +24,7 @@ public class FinancialController {
         this.balanceService = balanceService;
     }
 
-    @GetMapping("/balances")
+    @GetMapping()
     public ResponseEntity<List<Balance>> getBalances() throws NoSuchFileException, IOException, BalanceMappingException {
         return new ResponseEntity<>(this.balanceService.findBalances(), HttpStatus.OK);
     }
