@@ -3,6 +3,7 @@
 This project is a REST API designed for creating a financial dashboard. It allows users to retrieve account balances and manage financial data effectively. The aim of this dashboard is to provide a simple display of account balances.
 
 [Backend deployment link](https://jdkdeploy-backend.onrender.com/balance)
+[FrontEnd Respository](https://github.com/celeste2325/financial-dashboard-fronted)
 
 The technology stack used include
 [Java 17](https://community.chocolatey.org/packages/openjdk/17.0.2), and Lombok.
